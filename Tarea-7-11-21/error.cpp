@@ -96,7 +96,7 @@ double baz(double x)
   return std::sqrt(x);
 }
 
-void print_array(double data[], const int & size)
+void print_array(const double data[], const int & size)
 {
   std::cout << std::endl;
   int ii=0;
