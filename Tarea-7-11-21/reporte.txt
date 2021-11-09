@@ -1,0 +1,10 @@
+Sofía Guevara Montoya
+
+En el código original se tenía que el arreglo x era independiente y el arreglo y y z continuos, siendo y el primero, z el segundo, ya que se define en ese orden. Para evitar que se tomen valores del otro arreglo al ser continuos se cambió todos los arreglos con punteros, con eso se manejaban de forma independiente. Además con esto se puede cambiar rápidamente el tamaño de los arreglos.
+
+-Se elimina parte del código para que el array quede inicializado en la función print_array.
+-Se elimina la memoria para evitar memory leaks.
+-Se vuelven a darle tamaño a los arreglos para que en la siguiente parte puedan recibir otro tamaño.
+-Se eliminan las funciones con un primer argumento ya que no tiene sentido que se tenga x-NY, por ejemplo.
+-Se añaden condicionales para evitar la división por cero.
+-Se quita la variable v ya que está sin uso.
