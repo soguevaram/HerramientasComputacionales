@@ -18,7 +18,7 @@ int main(int argc, char **argv){
  
   int n = 0, csize = 0;
   n = std::atoi(argv[1]); // 512
-  csize = std::atoi(argv[1]); // 32
+  csize = std::atoi(argv[2]); // 32
   double *a, *b;
 
   // Allocating memory for array/matrix
@@ -64,16 +64,16 @@ void direct_transpose(double * m1, double * m2, int n)
       for (k=0; k<n; ++k)
         m1[index1d(i, j, k, n)] = m2[index1d(k, j, i, n)];
 }
-void cached_transpose(double * m1, double * m2, int n, int csize)
+void cached_transpose(double * m1, double * m2, int n, int bsize)
 {
   int i, j, k, ii, jj, kk;
   // function: cached_transpose(a, b, n, csize)
   // Transposition using cache-blocking
-  for (ii=0; ii<n; ii+=csize)
-    for (jj=0; jj<n; jj+=csize)
-      for (kk=0; kk<n; kk+=csize)
-        for (i=ii; i<std::min(n,ii+csize-1); ++i)
-          for (j=jj; j<std::min(n,jj+csize-1); ++j)
-            for (k=kk; k<std::min(n,kk+csize-1); ++k)
+  for (ii=0; ii<n; ii+=bsize)
+    for (jj=0; jj<n; jj+=bsize)
+      for (kk=0; kk<n; kk+=bsize)
+        for (i=ii; i<std::min(n,ii+bsize-1); ++i)
+          for (j=jj; j<std::min(n,jj+bsize-1); ++j)
+            for (k=kk; k<std::min(n,kk+bsize-1); ++k)
               m1[index1d(i, j, k, n)] = m2[index1d(k, j, i, n)];
 }
