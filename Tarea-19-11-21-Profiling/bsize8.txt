@@ -3,14 +3,14 @@ Flat profile:
 Each sample counts as 0.01 seconds.
   %   cumulative   self              self     total           
  time   seconds   seconds    calls   s/call   s/call  name    
- 46.34     10.00    10.00        1    10.00    10.45  cached_transpose(double*, double*, int, int)
- 44.53     19.61     9.61        1     9.61     9.94  direct_transpose(double*, double*, int)
-  4.64     20.61     1.00 803736574     0.00     0.00  index1d(int, int, int, int)
-  3.20     21.30     0.69                             main
-  0.93     21.50     0.20        1     0.20     0.54  fill(double*, double*, int)
-  0.56     21.62     0.12 133956096     0.00     0.00  int const& std::min<int>(int const&, int const&)
-  0.00     21.62     0.00        1     0.00     0.00  _GLOBAL__sub_I_main
-  0.00     21.62     0.00        1     0.00     0.00  __static_initialization_and_destruction_0(int, int)
+ 71.62      8.54     8.54        1     8.54     8.87  direct_transpose(double*, double*, int)
+ 12.53     10.03     1.49        1     1.49     1.82  cached_transpose(double*, double*, int, int)
+  7.52     10.93     0.90 716701696     0.00     0.00  index1d(int, int, int, int)
+  5.76     11.61     0.69                             main
+  1.85     11.83     0.22        1     0.22     0.56  fill(double*, double*, int)
+  0.84     11.93     0.10 119537664     0.00     0.00  int const& std::min<int>(int const&, int const&)
+  0.08     11.94     0.01        1     0.01     0.01  _GLOBAL__sub_I_main
+  0.00     11.94     0.00        1     0.00     0.00  __static_initialization_and_destruction_0(int, int)
 
  %         the percentage of the total running time of the
 time       program used by this function.
@@ -48,42 +48,46 @@ notice and this notice are preserved.
 		     Call graph (explanation follows)
 
 
-granularity: each sample hit covers 2 byte(s) for 0.05% of 21.62 seconds
+granularity: each sample hit covers 2 byte(s) for 0.08% of 11.94 seconds
 
 index % time    self  children    called     name
                                                  <spontaneous>
-[1]    100.0    0.69   20.93                 main [1]
-               10.00    0.45       1/1           cached_transpose(double*, double*, int, int) [2]
-                9.61    0.33       1/1           direct_transpose(double*, double*, int) [3]
-                0.20    0.33       1/1           fill(double*, double*, int) [5]
+[1]     99.9    0.69   11.25                 main [1]
+                8.54    0.34       1/1           direct_transpose(double*, double*, int) [2]
+                1.49    0.33       1/1           cached_transpose(double*, double*, int, int) [3]
+                0.22    0.34       1/1           fill(double*, double*, int) [5]
 -----------------------------------------------
-               10.00    0.45       1/1           main [1]
-[2]     48.3   10.00    0.45       1         cached_transpose(double*, double*, int, int) [2]
-                0.33    0.00 266865662/803736574     index1d(int, int, int, int) [4]
-                0.12    0.00 133956096/133956096     int const& std::min<int>(int const&, int const&) [6]
+                8.54    0.34       1/1           main [1]
+[2]     74.3    8.54    0.34       1         direct_transpose(double*, double*, int) [2]
+                0.34    0.00 268435456/716701696     index1d(int, int, int, int) [4]
 -----------------------------------------------
-                9.61    0.33       1/1           main [1]
-[3]     46.0    9.61    0.33       1         direct_transpose(double*, double*, int) [3]
-                0.33    0.00 268435456/803736574     index1d(int, int, int, int) [4]
+                1.49    0.33       1/1           main [1]
+[3]     15.2    1.49    0.33       1         cached_transpose(double*, double*, int, int) [3]
+                0.23    0.00 179830784/716701696     index1d(int, int, int, int) [4]
+                0.10    0.00 119537664/119537664     int const& std::min<int>(int const&, int const&) [6]
 -----------------------------------------------
-                0.33    0.00 266865662/803736574     cached_transpose(double*, double*, int, int) [2]
-                0.33    0.00 268435456/803736574     fill(double*, double*, int) [5]
-                0.33    0.00 268435456/803736574     direct_transpose(double*, double*, int) [3]
-[4]      4.6    1.00    0.00 803736574         index1d(int, int, int, int) [4]
+                0.23    0.00 179830784/716701696     cached_transpose(double*, double*, int, int) [3]
+                0.34    0.00 268435456/716701696     fill(double*, double*, int) [5]
+                0.34    0.00 268435456/716701696     direct_transpose(double*, double*, int) [2]
+[4]      7.5    0.90    0.00 716701696         index1d(int, int, int, int) [4]
 -----------------------------------------------
-                0.20    0.33       1/1           main [1]
-[5]      2.5    0.20    0.33       1         fill(double*, double*, int) [5]
-                0.33    0.00 268435456/803736574     index1d(int, int, int, int) [4]
+                0.22    0.34       1/1           main [1]
+[5]      4.7    0.22    0.34       1         fill(double*, double*, int) [5]
+                0.34    0.00 268435456/716701696     index1d(int, int, int, int) [4]
 -----------------------------------------------
-                0.12    0.00 133956096/133956096     cached_transpose(double*, double*, int, int) [2]
-[6]      0.6    0.12    0.00 133956096         int const& std::min<int>(int const&, int const&) [6]
+                0.10    0.00 119537664/119537664     cached_transpose(double*, double*, int, int) [3]
+[6]      0.8    0.10    0.00 119537664         int const& std::min<int>(int const&, int const&) [6]
 -----------------------------------------------
-                0.00    0.00       1/1           __libc_csu_init [18]
-[13]     0.0    0.00    0.00       1         _GLOBAL__sub_I_main [13]
-                0.00    0.00       1/1           __static_initialization_and_destruction_0(int, int) [14]
+                0.01    0.00       1/1           __libc_csu_init [8]
+[7]      0.1    0.01    0.00       1         _GLOBAL__sub_I_main [7]
+                0.00    0.00       1/1           __static_initialization_and_destruction_0(int, int) [15]
 -----------------------------------------------
-                0.00    0.00       1/1           _GLOBAL__sub_I_main [13]
-[14]     0.0    0.00    0.00       1         __static_initialization_and_destruction_0(int, int) [14]
+                                                 <spontaneous>
+[8]      0.1    0.00    0.01                 __libc_csu_init [8]
+                0.01    0.00       1/1           _GLOBAL__sub_I_main [7]
+-----------------------------------------------
+                0.00    0.00       1/1           _GLOBAL__sub_I_main [7]
+[15]     0.0    0.00    0.00       1         __static_initialization_and_destruction_0(int, int) [15]
 -----------------------------------------------
 
  This table describes the call tree of the program, and was sorted by
@@ -176,6 +180,6 @@ notice and this notice are preserved.
 
 Index by function name
 
-  [13] _GLOBAL__sub_I_main (transpose_blocking.cpp) [14] __static_initialization_and_destruction_0(int, int) (transpose_blocking.cpp) [6] int const& std::min<int>(int const&, int const&)
-   [2] cached_transpose(double*, double*, int, int) [5] fill(double*, double*, int) [1] main
-   [3] direct_transpose(double*, double*, int) [4] index1d(int, int, int, int)
+   [7] _GLOBAL__sub_I_main (transpose_blocking.cpp) [15] __static_initialization_and_destruction_0(int, int) (transpose_blocking.cpp) [6] int const& std::min<int>(int const&, int const&)
+   [3] cached_transpose(double*, double*, int, int) [5] fill(double*, double*, int) [1] main
+   [2] direct_transpose(double*, double*, int) [4] index1d(int, int, int, int)
