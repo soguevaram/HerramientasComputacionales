@@ -1,6 +1,5 @@
 MSIZE=4000
 REPS=10
-nthreads=12
 
 # First section: running only with eigen
 g++ -fopenmp -O3  eigen-matmul.cpp -o eigen.x
