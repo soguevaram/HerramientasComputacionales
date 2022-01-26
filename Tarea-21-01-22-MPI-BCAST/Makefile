@@ -1,0 +1,2 @@
+MPI: plot.gp 
+	gnuplot $<
