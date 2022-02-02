@@ -43,10 +43,11 @@ int main(int argc, char **argv)
   initial_conditions(data, NROWS, NCOLS, pid, np);
   if (0 == pid) {std::cout << " After initial conditions ...\n";}
   print_screen(data, NROWS, NCOLS, pid, np); // todo
-   boundary_conditions(data, NROWS, NCOLS, pid, np); // todo
+    boundary_conditions(data, NROWS, NCOLS, pid, np); // todo
   if (0 == pid) {std::cout << " After boundary conditions ...\n";}
-  print_screen(data, NROWS, NCOLS, pid, np); // todo
+    print_screen(data, NROWS, NCOLS, pid, np); // todo
 
+  
   /*
   // Serial version
   Matrix data(N*N);
@@ -68,12 +69,11 @@ int main(int argc, char **argv)
 void initial_conditions(Matrix & m, int nrows, int ncols, int pid, int np)
 {
   // same task for all pids, but fill with the pids to distinguish among thems
-  for(pid=0; pid < np; pid++){
+
     for(int ii=0; ii<nrows; ++ii) {
       for(int jj=0; jj<ncols; ++jj) {
 	m[ii*ncols + jj] = pid;
       }
-    }
   }
 }
 
@@ -81,31 +81,30 @@ void boundary_conditions(Matrix & m, int nrows, int ncols, int pid, int np)
 {
   // TODO
   // Take into account each pid
-  int ii = 0, jj = 0;
-
+  int ii = 1, jj = 0;
   if(pid == 0){
-    for (jj = 1; jj < ncols; ++jj)
+    for (jj = 0; jj < ncols; ++jj){
       m[ii*ncols + jj] = 100;
+    }
   }
-
+  
   if(pid == np-1){
-      ii = nrows-1;
-      for (jj = 0; jj < ncols; ++jj)
-	m[ii*ncols + jj] = 0;
+    ii = nrows-2;
+    for (jj = 0; jj < ncols; ++jj){
+      m[ii*ncols + jj] = 0;
+    }
   }
 
-    jj = 0;
-    for(pid=0; pid < np; pid++){				
-      for (ii = 1; ii < nrows-1; ++ii)
-	m[ii*ncols + jj] = 0;
-    }
-
-    jj = ncols-1;
-    for(pid=0; pid < np; pid++){ 
-      for (ii = 1; ii < nrows-1; ++ii)
-	m[ii*ncols + jj] = 0;
-    }
-    
+  jj = 0;			
+  for (ii = 1; ii < nrows-1; ++ii){
+      m[ii*ncols + jj] = 0;
+  }
+  
+  jj = ncols-1;
+  for (ii = 1; ii < nrows-2; ++ii){
+    m[ii*ncols + jj] = 0;
+  }
+  
 }
 
 void print_screen(const Matrix & m, int nrows, int ncols, int pid, int np)
@@ -119,7 +118,7 @@ void print_screen(const Matrix & m, int nrows, int ncols, int pid, int np)
     Matrix buffer(nrows*ncols);
     for(int src=1; src < np; src++){
       MPI_Recv(&buffer[0], nrows*ncols, MPI_DOUBLE, src, tag, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-      print_slab(m, nrows, ncols);
+      print_slab(buffer, nrows, ncols);
     }
   }
     // now receive in buffer and print other pids data
